@@ -1,0 +1,17 @@
+<h1> The Big Boii </h1>
+<div>
+  <p *ngIf="selectedHero; else  noSelectedHero">
+    {{selectedHero.name | uppercase}}
+  </p>
+  <ng-template #noSelectedHero>
+    No boii selected
+  </ng-template>
+</div>
+
+
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes | async" (click)="onSelect(hero)" [class.selected]="hero === selectedHero">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
