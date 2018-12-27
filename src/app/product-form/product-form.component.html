@@ -1,0 +1,34 @@
+<form #productForm="ngForm" (ngSubmit)="addOrUpdateProduct()">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="product.name" name="name" placeholder="Wumbo" required>
+    </div>
+    <div class="field">
+      <label>Price</label>
+      <input type="text" [(ngModel)]="product.price" name="price" placeholder="29.99">
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <input type="text" [(ngModel)]="product.description" name="description" placeholder="Describe the product in full detail">
+    </div>
+    <div class="field">
+        <label>Bullets</label>
+        <input type="text" [(ngModel)]="product.bullet" name="bullet">
+        Add Bullet / Remove Bullet
+    </div>
+    <div class="field">
+      <label>Sizes</label>
+      <input type="text" [(ngModel)]="product.size" name="size" placeholder="S, M, L">
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select [(ngModel)]="product.category" name="category">
+        <option *ngFor="let cat of categories | async" [value]="cat.name" >{{cat.name}}</option>
+      </select>
+    </div>
+    <div class="field">
+        <label>Images</label>
+        <input type="text" name="imageUrl">
+    </div>
+    <button class="ui button" type="submit">Add product</button>
+  </form>

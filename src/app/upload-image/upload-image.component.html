@@ -1,0 +1,3 @@
+<h5> Upload a New Picture </h5>
+<input type="file" (change)="this.uploading = true; uploadService.upload($event);">
+<p [hidden]="!uploading">File uploading, please wait...</p>

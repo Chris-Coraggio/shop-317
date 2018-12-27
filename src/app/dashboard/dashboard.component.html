@@ -1,3 +1,13 @@
-<p>
-  dashboard works!
-</p>
+<h2>My Products</h2>
+
+<ul class="heroes">
+  <li *ngFor="let product of products | async" (click)="onSelect(product)" [class.selected]="product === selectedProduct">
+    <span class="badge">{{product.name}}</span> {{product.name}}
+  </li>
+</ul>
+
+<h2> Add Product </h2>
+<product-form></product-form>
+<h2> Add Category </h2>
+
+<app-upload-image></app-upload-image>
