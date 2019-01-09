@@ -1,0 +1,16 @@
+<div class=row>
+  <div class="col-6">
+    <h2> Add Category </h2>
+    <input type="text" name="newCategory" [(ngModel)]="this.newCategory">
+    <button type="button" (click)="addCategory(this.newCategory)">Add</button>
+  </div>
+  <div class="col-6">
+    <h2> Remove Category </h2>
+    <select [(ngModel)]="categoryToRemove">
+      <option *ngFor="let cat of this.categories | async" [value]="cat.id">
+        {{cat.name}}
+      </option>
+    </select>
+    <button type="button" (click)="removeCategory(categoryToRemove)">Remove</button>
+  </div>
+</div>

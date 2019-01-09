@@ -1,0 +1,13 @@
+$primary-color: #466474;
+$secondary-color: #767E58;
+$black: #000000;
+$white: #ffffff;
+@font-face {
+    font-family: 'primary';
+    src: url(../../assets/fonts/BodoniMT.ttf) format("opentype");
+}
+
+@font-face {
+    font-family: 'secondary';
+    src: url(../../assets/fonts/OpenSans-Regular.ttf) format("opentype");
+}

@@ -1,0 +1,8 @@
+<input type="text" [(ngModel)]="this.bulletString" placeholder="This product is amazing">
+<button type="button" (click)="addBullet()">Add Bullet</button>
+<!-- {{this.currentBulletListId}} -->
+<ul>
+    <li *ngFor="let bullet of this.bulletList | async | keyvalue">{{bullet.value}}
+        <button type="button" (click)="removeBullet(bullet.key)">Delete</button>
+    </li>
+</ul>

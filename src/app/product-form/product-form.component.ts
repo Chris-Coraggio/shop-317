@@ -7,7 +7,7 @@ import { Product } from '../product';
 @Component({
   selector: 'product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css']
+  styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit {
 
@@ -23,27 +23,45 @@ export class ProductFormComponent implements OnInit {
   product: any = {};
   db: AngularFirestore;
 
-  addOrUpdateProduct() {
+  addProduct() {
 
     var product = this.product;
 
     if(!product.id){
       product.id = this.generateID();
     }
-  
-    const productRef: AngularFirestoreDocument<any> = this.db.doc(`products/${product.id}`);  
-    var result = productRef.set(product, { merge: true })
-    if(result){
-      alert("Added product successfully!");
-      return result;
-    } else {
-      alert("Error adding product :(");
-      return result;
-    }
+
+    this.setPrimaryImageAndSubmitProduct(product.images, product)
   }
 
   generateID() {
     return Math.random().toString(36).substring(2,15) + Math.random().toString(36).substring(2,15);
+  }
+
+  setPrimaryImageAndSubmitProduct(imageListId: String, product: Product){
+    console.log("At least I'm trying");
+    this.db.doc(`images/${imageListId}`).get()
+    .subscribe(data => {
+      let obj = data.data();
+      console.log(obj);
+      var url;
+      for(let key in obj){
+        url = obj[key]["url"];
+        break;
+      }
+      console.log(url);
+      product.primaryImage = url;
+
+      const productRef: AngularFirestoreDocument<any> = this.db.doc(`products/${product.id}`);  
+      var result = productRef.set(product, { merge: true })
+      if(result){
+        alert("Added product successfully!");
+        return result;
+      } else {
+        alert("Error adding product :(");
+        return result;
+      }
+    })
   }
 
 }

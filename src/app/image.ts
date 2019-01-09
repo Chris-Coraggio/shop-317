@@ -1,4 +1,6 @@
 export class Image {
-    id: String;
+    id: string;
+    listId: String;
     url: String;
+    fileName: String;
 }

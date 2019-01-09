@@ -1,3 +1,9 @@
 <h5> Upload a New Picture </h5>
-<input type="file" (change)="this.uploading = true; uploadService.upload($event);">
+<input type="file" class="form-control" (change)="this.uploading = true; this.upload($event);">
 <p [hidden]="!uploading">File uploading, please wait...</p>
+<h4>Images</h4>
+<ul>
+    <li *ngFor="let image of this.imageList | async | keyvalue">
+        {{image.value | filename}}
+    </li>
+</ul> 

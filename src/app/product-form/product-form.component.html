@@ -1,34 +1,42 @@
-<form #productForm="ngForm" (ngSubmit)="addOrUpdateProduct()">
-    <div class="field">
-      <label>Name</label>
-      <input type="text" [(ngModel)]="product.name" name="name" placeholder="Wumbo" required>
+<h2> Add Product </h2>
+<form #productForm="ngForm" (ngSubmit)="addProduct()">
+  <div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="name-input">Name</label>
+      <input class="form-control" id="name-input" type="text" [(ngModel)]="product.name" name="name" placeholder="Wumbo" required>
     </div>
-    <div class="field">
-      <label>Price</label>
-      <input type="text" [(ngModel)]="product.price" name="price" placeholder="29.99">
+    <div class="form-group">
+      <label for="price-input">Price</label>
+      <input class="form-control" id="price-input" type="text" [(ngModel)]="product.price" name="price" placeholder="29.99">
     </div>
-    <div class="field">
-      <label>Description</label>
-      <input type="text" [(ngModel)]="product.description" name="description" placeholder="Describe the product in full detail">
+    <div class="form-group">
+      <label for="descrip-input">Description</label>
+      <textarea class="form-control" id="descrip-input" [(ngModel)]="product.description" name="description" placeholder="Describe the product in full detail"></textarea>
     </div>
-    <div class="field">
-        <label>Bullets</label>
-        <input type="text" [(ngModel)]="product.bullet" name="bullet">
-        Add Bullet / Remove Bullet
+    <div class="form-group">
+        <label for="size-input">Sizes</label>
+        <input class="form-control" id="size-input" type="text" [(ngModel)]="product.size" name="size" placeholder="S, M, L">
+      </div>
+      <div class="form-group">
+        <label for="cat-select">Category</label>
+        <select id="cat-select" class="form-control" [(ngModel)]="product.category" name="category">
+          <option *ngFor="let cat of categories | async" [value]="cat.name" >{{cat.name}}</option>
+        </select>
+      </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label for="bullet-list">Bullet Points</label>
+      <br>
+      <bulletList id="bullet-list" [(ngModel)]="product.bullets" name="bullets"></bulletList>
     </div>
-    <div class="field">
-      <label>Sizes</label>
-      <input type="text" [(ngModel)]="product.size" name="size" placeholder="S, M, L">
+  </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+        <app-upload-image [(ngModel)]="product.images" name="images"></app-upload-image>
     </div>
-    <div class="field">
-      <label>Category</label>
-      <select [(ngModel)]="product.category" name="category">
-        <option *ngFor="let cat of categories | async" [value]="cat.name" >{{cat.name}}</option>
-      </select>
-    </div>
-    <div class="field">
-        <label>Images</label>
-        <input type="text" name="imageUrl">
-    </div>
-    <button class="ui button" type="submit">Add product</button>
+  </div>
+  </div>
+  <button class="ui button" type="submit">Add product</button>
   </form>

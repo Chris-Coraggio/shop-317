@@ -1,10 +1,11 @@
 export class Product {
-    imageURLs: String[];
+    images: String;
     price: number;
     description: String;
-    bullets: String[];
-    sizes: String[];
+    bullets: String;
+    sizes: String;
     category: String;
     name: String;
     id: String;
+    primaryImage: String;
 }

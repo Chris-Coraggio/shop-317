@@ -15,11 +15,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { StorefrontComponent } from './storefront/storefront.component';
 import { AuthService } from './core/auth.service';
-import { ProductComponent } from './product/product.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { UploadService } from './core/upload.service';
 import { CartComponent } from './cart/cart.component';
+import { BulletListComponent } from './bullet-list/bullet-list.component';
+import { CategoryViewComponent } from './category-view/category-view.component';
+import { FileNamePipe } from './upload-image/file-name-pipe';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { CartComponent } from './cart/cart.component';
     DashboardComponent,
     LoginComponent,
     StorefrontComponent,
-    ProductComponent,
     ProductFormComponent,
     UploadImageComponent,
     CartComponent,
+    BulletListComponent,
+    CategoryViewComponent,
+    FileNamePipe
   ],
   imports: [
     BrowserModule,
