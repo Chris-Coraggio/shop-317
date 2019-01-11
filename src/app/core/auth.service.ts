@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   checkForAdmin(email: String): boolean {
-    return email === "chriscoraggio1@gmail.com"
+    return email === "chriscoraggio1@gmail.com" || email === "shop317company@gmail.com"
   }
 
 

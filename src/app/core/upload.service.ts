@@ -29,7 +29,6 @@ export class UploadService {
       image.url = url;
       console.log(url);
       this.saveImageToDB(image);
-      alert("Image uploaded!");
     })
     .catch(err => {
       console.log(err);
@@ -39,6 +38,10 @@ export class UploadService {
   downloadURL: Observable<string>;
   uploadProgress: Observable<number>;
   task: AngularFireUploadTask;
+
+  getUploadProgress(): Observable<number>{
+    return this.uploadProgress;
+  }
 
   generateID(): string {
     return Math.random().toString(36).substring(2,15) + Math.random().toString(36).substring(2,15);

@@ -8,9 +8,14 @@ import { AuthService } from '../core/auth.service';
   styleUrls: ['./login.component.css']
 })
 
+@Injectable()
 export class LoginComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  auth: AuthService;
+
+  constructor(auth: AuthService) { 
+    this.auth = auth;
+  }
 
   ngOnInit() {
   }

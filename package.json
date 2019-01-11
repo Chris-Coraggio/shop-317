@@ -25,6 +25,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.7.0",
     "rxjs": "~6.3.3",
+    "square-connect": "^2.20181212.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

@@ -40,3 +40,4 @@ Thumbs.db
 
 # The Good Stuff
 /src/environments
+/.firebase

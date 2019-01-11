@@ -1,5 +1,6 @@
 <h2> Add Product </h2>
 <form #productForm="ngForm" (ngSubmit)="addProduct()">
+  <div class="container-fluid">
   <div class="row">
   <div class="col-sm-4">
     <div class="form-group">
@@ -38,5 +39,6 @@
     </div>
   </div>
   </div>
-  <button class="ui button" type="submit">Add product</button>
+  </div>
+  <button class="ui button" type="button" (onclick)="addProduct()">Add product</button>
   </form>

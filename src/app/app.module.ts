@@ -22,6 +22,7 @@ import { CartComponent } from './cart/cart.component';
 import { BulletListComponent } from './bullet-list/bullet-list.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { FileNamePipe } from './upload-image/file-name-pipe';
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FileNamePipe } from './upload-image/file-name-pipe';
     AngularFireStorageModule,
     AppRoutingModule
   ],
-  providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService],
+  providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

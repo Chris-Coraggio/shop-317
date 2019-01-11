@@ -37,6 +37,7 @@ export class UploadImageComponent implements OnInit, ControlValueAccessor {
   db: AngularFirestore;
   imageList: Observable<{}>;
   uploading: boolean;
+  uploadProgress: Observable<number>;
 
   upload(event: any){
     console.log(event)
@@ -47,6 +48,7 @@ export class UploadImageComponent implements OnInit, ControlValueAccessor {
       this.imageList = this.db.doc(`images/${this.currentImageListId}`).valueChanges();
     }
     this.uploadService.upload(event, this.currentImageListId);
+    this.uploadProgress = this.uploadService.getUploadProgress();
   }
 
   getURL(obj: Object): Observable<string> {
