@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth'
@@ -23,11 +22,14 @@ import { BulletListComponent } from './bullet-list/bullet-list.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { FileNamePipe } from './upload-image/file-name-pipe';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
+import { ProductModalComponent } from './product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
     DashboardComponent,
     LoginComponent,
     StorefrontComponent,
@@ -36,7 +38,8 @@ import { LocationStrategy, HashLocationStrategy} from '@angular/common';
     CartComponent,
     BulletListComponent,
     CategoryViewComponent,
-    FileNamePipe
+    FileNamePipe,
+    ProductModalComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +47,17 @@ import { LocationStrategy, HashLocationStrategy} from '@angular/common';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  entryComponents: [
+    ProductModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

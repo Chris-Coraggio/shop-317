@@ -1,0 +1,83 @@
+<div mat-dialog-content>
+    <main class="mt-5 pt-4"> 
+      <div class="container dark-grey-text mt-5">
+  
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+  
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+  
+            <img [src]="data.product.primaryImage" class="img-fluid" alt="">
+  
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-md-6 mb-4">
+  
+            <!--Content-->
+            <div class="p-4">
+  
+              <div class="mb-3">
+                <a href="">
+                  <span class="badge purple mr-1">{{data.product.category}}</span>
+                </a>
+              </div>
+  
+              <p class="lead">
+                <!-- <span class="mr-1">
+                  <del>$200</del>
+                </span> -->
+                <span>${{data.product.price}}</span>
+              </p>
+  
+              <p>{{data.product.description}}</p>
+  
+            </div>
+            <!--Content-->
+  
+          </div>
+          <!--Grid column-->
+  
+        </div>
+        <!--Grid row-->
+  
+        <hr>
+  
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center wow fadeIn">
+  
+          <!--Grid column-->
+          <div class="col-md-6 text-center">
+
+            <bulletList (list-id)="data.product.bullets"></bulletList>
+  
+          </div>
+          <!--Grid column-->
+  
+        </div>
+        <!--Grid row-->
+  
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4">
+  
+            <!-- <img *ngFor="let image of data.product.images" (src)="image.url" class="img-fluid" alt=""> -->
+  
+          </div>
+          <!--Grid column-->
+  
+        </div>
+        <!--Grid row-->
+  
+      </div>
+    </main>
+    <!--Main layout-->
+  </div>
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Quit</button>
+    <button mat-button [mat-dialog-close]="true">Add to Cart</button>
+  </mat-dialog-actions>
