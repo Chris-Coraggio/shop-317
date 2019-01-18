@@ -8,7 +8,7 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4">
   
-            <img [src]="data.product.primaryImage" class="img-fluid" alt="">
+            <img [src]="data.product.primaryImage" class="img-thumbnail" alt="">
   
           </div>
           <!--Grid column-->
@@ -20,16 +20,19 @@
             <div class="p-4">
   
               <div class="mb-3">
-                <a href="">
-                  <span class="badge purple mr-1">{{data.product.category}}</span>
-                </a>
+                <div class="header">
+                  <div class="category">
+                      <h6 class="label label-danger">
+                        <!-- <span class="mr-1">
+                            <del>$200</del>
+                          </span> -->
+                        <span>${{data.product.price}}</span></h6>    
+                  </div>
+              </div>
               </div>
   
               <p class="lead">
-                <!-- <span class="mr-1">
-                  <del>$200</del>
-                </span> -->
-                <span>${{data.product.price}}</span>
+                
               </p>
   
               <p>{{data.product.description}}</p>
@@ -51,7 +54,7 @@
           <!--Grid column-->
           <div class="col-md-6 text-center">
 
-            <bulletList (list-id)="data.product.bullets"></bulletList>
+            <bulletListDisplay [list-id]="data.product.bullets"></bulletListDisplay>
   
           </div>
           <!--Grid column-->

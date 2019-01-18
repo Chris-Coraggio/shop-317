@@ -13,27 +13,17 @@ import { Product } from '../product';
 
 @Injectable()
 export class StorefrontComponent implements OnInit {
-
-  products: Observable<any[]>;
+  
   db: AngularFirestore;
-  dialog: MatDialog;
+  categories: Observable<any[]>;
 
-  constructor(db: AngularFirestore, dialog: MatDialog) {
+  constructor(db: AngularFirestore){
     this.db = db;
-    this.dialog = dialog;
   }
 
-  ngOnInit() {
-    this.products = this.db.collection("products").valueChanges();
+  ngOnInit(){
+    this.categories = this.db.collection("categories").valueChanges();
   }
 
-  showDialog(product: Product){
-    console.log(product);
-    this.dialog.open(ProductModalComponent, {
-      data:{
-        product
-      }
-    })
-  }
 
 }

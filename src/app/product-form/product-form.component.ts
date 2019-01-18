@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Product } from '../product';
+import { firestore } from 'firebase';
 
 @Component({
   selector: 'product-form',
@@ -54,6 +55,9 @@ export class ProductFormComponent implements OnInit {
 
       const productRef: AngularFirestoreDocument<any> = this.db.doc(`products/${product.id}`);  
       var result = productRef.set(product, { merge: true })
+      this.db.doc(`categories/${product.category}`).update({
+        productIds: firestore.FieldValue.arrayUnion(product.id)
+      });
       if(result){
         alert("Added product successfully!");
         return result;
@@ -61,7 +65,7 @@ export class ProductFormComponent implements OnInit {
         alert("Error adding product :(");
         return result;
       }
-    })
+    });
   }
 
 }

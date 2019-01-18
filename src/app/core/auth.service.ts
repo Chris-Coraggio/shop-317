@@ -19,6 +19,7 @@ interface User {
 export class AuthService {
 
   user: Observable<User>;
+  displayName: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -36,6 +37,7 @@ export class AuthService {
           }
         })
       )
+      this.displayName = "";
     }
 
   googleLogin() {
@@ -47,9 +49,14 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUserData(credential.user)
+        this.displayName = credential.user.displayName;
       })
   }
 
+  logout() {
+    this.afAuth.auth.signOut();
+    this.displayName = "";
+  }
 
   private updateUserData(user) {
     // Sets user data to firestore on login

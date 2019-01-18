@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <a mat-button class="companyName" routerLink="/">
+    <img class="nav-img" src="../assets/img/logo-small.png">
+  </a>
+  <span style="flex: 1 1 auto;"></span>
+  <div fxShow="true" fxHide.lt-md="true">
+    <a mat-button href="#about" >About</a>
+    <a mat-button href="#contact">Contact</a>
+    <a mat-button *ngIf="auth.displayName; else notLoggedIn">
+        Signed in as: {{auth.displayName}}
+    </a>
+    <a mat-button *ngIf="auth.displayName" (click)="auth.logout()">
+      Sign Out
+    </a>
+      
+      <ng-template #notLoggedIn>
+          <a mat-button (click)="auth.googleLogin()">
+              <img width="20px" (click)="auth.googleLogin()" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+              Login
+          </a>
+      </ng-template>
+  </div>
+</mat-toolbar>
+      <!-- <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
+          <div fxLayout="column">
+              <a mat-button href="#about">About</a>
+              <a mat-button routerLink="/login">Login</a>
+              <a mat-button href="#contact">Contact</a>
+          </div>
+        </mat-sidenav>
+      </mat-sidenav-container> -->

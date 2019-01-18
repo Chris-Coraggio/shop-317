@@ -9,3 +9,14 @@ body {
     margin: 0; 
     font-family: 'primary', Roboto, "Helvetica Neue", sans-serif;
 }
+.hero-image {
+  
+    /* Set a specific height */
+    height: 400px;
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }

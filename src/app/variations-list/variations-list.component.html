@@ -1,0 +1,12 @@
+<h5> Variations </h5>
+<input type="file" class="form-control" (change)="this.uploading = true; this.upload($event);">
+<div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async | number:0) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<ul>
+    <li *ngFor="let variation of this.variationList | async | keyvalue">
+        {{variation.value.img | filename}}
+        <input type="text" [(ngModel)]="this.description" placeholder="descriptive text">
+        <button type="button" (click)="saveVariation(variation.key)">Save</button>
+    </li>
+</ul> 

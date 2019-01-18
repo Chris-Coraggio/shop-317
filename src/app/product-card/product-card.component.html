@@ -1,0 +1,7 @@
+<mat-card class="product-card" (click)="showDialog()" *ngIf="this.product">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
+    <img mat-card-md-image src={{product.primaryImage}}>    
+  </mat-card-header>
+</mat-card>

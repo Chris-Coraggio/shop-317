@@ -4,6 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {
+  MatIconModule, MatButtonModule, MatSidenavModule, MatToolbarModule
+} from '@angular/material';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
@@ -26,6 +31,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { MatDialogModule } from '@angular/material';
 import { ProductModalComponent } from './product-modal/product-modal.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { VariationsListComponent } from './variations-list/variations-list.component';
+import { BulletListDisplayComponent } from './bullet-list-display/bullet-list-display.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +50,13 @@ import { ProductModalComponent } from './product-modal/product-modal.component';
     BulletListComponent,
     CategoryViewComponent,
     FileNamePipe,
-    ProductModalComponent
+    ProductModalComponent,
+    NavbarComponent,
+    AboutComponent,
+    ContactComponent,
+    VariationsListComponent,
+    BulletListDisplayComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +67,12 @@ import { ProductModalComponent } from './product-modal/product-modal.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule, 
+    MatButtonModule, 
+    MatSidenavModule, 
+    MatToolbarModule,
+    FlexLayoutModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

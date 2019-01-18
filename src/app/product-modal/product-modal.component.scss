@@ -1,0 +1,19 @@
+.label {
+    padding: 10px 13px;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.label-danger {
+    background-color: #FF3B30;
+  }
+
+.img-thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+  }

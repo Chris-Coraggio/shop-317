@@ -49,8 +49,16 @@ export class UploadService {
 
   // Writes the file details to the realtime db
   private saveImageToDB(image: Image) {
-    var imgObj = new Object();
-    imgObj[image.id] = JSON.parse(JSON.stringify(image));
-    this.db.doc(`images/${image.listId}`).update(imgObj);
+    
+    if(image.listId.startsWith("VAR")){
+      var varObj = new Object();
+      varObj["VAR" + image.id] = new Object();
+      varObj["VAR" + image.id]["img"] = JSON.parse(JSON.stringify(image));
+      this.db.doc(`variations/${image.listId}`).update(varObj);
+    } else {
+      var imgObj = new Object();
+      imgObj[image.id] = JSON.parse(JSON.stringify(image));
+      this.db.doc(`images/${image.listId}`).update(imgObj);
+    }
   }
 }

@@ -1,7 +1,13 @@
-<mat-card *ngFor="let product of this.products | async" (click)="showDialog(product)">
-	<mat-card-header>
-		<mat-card-title>{{product.name}}</mat-card-title>
-    <mat-card-subtitle>{{product.price}}</mat-card-subtitle>
-    <img mat-card-md-image src={{product.primaryImage}}>    
-  </mat-card-header>
-</mat-card>
+<app-navbar></app-navbar>
+<div class="banner">
+    <img class="hero-image" src="../assets/img/logo-large.png">
+</div>
+<div class="category-container" *ngFor="let cat of this.categories | async">
+  <h2>{{cat.name}}</h2>
+  <div *ngFor="let prod of cat.productIds">
+    <app-product-card [id]="prod"></app-product-card>
+  </div>
+</div>
+
+<app-about></app-about>
+<app-contact></app-contact>
