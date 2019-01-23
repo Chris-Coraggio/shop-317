@@ -21,6 +21,12 @@ app.get('/', (req, res) => {
     res.send("Hello world!");
 })
 
+//quantity: string number
+//cost: number of cents
+//product_name: string
+
+
+
 app.get('/test', (req, res) => {
     var body = new SquareConnect.CreateCheckoutRequest();
     body.idempotency_key = crypto.randomBytes(20).toString('hex');
@@ -29,27 +35,26 @@ app.get('/test', (req, res) => {
     body.order.line_items = [];
     body.order.line_items.push();
     var lineItem = new SquareConnect.CreateOrderRequestLineItem();
-    lineItem.quantity = "1";
+    lineItem.quantity = req.quantity;
     lineItem.base_price_money = {
-        amount: 10000, //ten dollars
+        amount: req.cost, //in cents
         currency: 'USD'
     };
-    lineItem.name = "Parrots";
+    lineItem.name = req.product_name;
     body.order.line_items.push(lineItem);
     body.order.taxes = [];
     var tax = new SquareConnect.CreateOrderRequestTax();
-    tax.name = "Sales Tax?";
+    tax.name = "Sales Tax";
     tax.percentage = "7";
     body.order.taxes.push(tax);
 
     //body.order.reference_id <- for db stuff
     body.ask_for_shipping_address = true;
-    //body.redirect_url <- Set this for validation
+    body.redirect_url = "shop317company.com";
 
     checkout.createCheckout(creds["sandbox-location"], body)
     .then(data => {
-        console.log(data.checkout.exports.checkout_page_url);
-        res.send(data.checkout.exports.checkout_page_url);
+        res.send(creds["validity-string"] + data.checkout.checkout_page_url);
     })
     .catch(err => {
         console.log(err);

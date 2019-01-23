@@ -37,6 +37,7 @@ import { ContactComponent } from './contact/contact.component';
 import { VariationsListComponent } from './variations-list/variations-list.component';
 import { BulletListDisplayComponent } from './bullet-list-display/bullet-list-display.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     MatButtonModule, 
     MatSidenavModule, 
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
