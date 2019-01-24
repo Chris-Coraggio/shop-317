@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/test', (req, res) => {
+app.post('/test', (req, res) => {
     var body = new SquareConnect.CreateCheckoutRequest();
     body.idempotency_key = crypto.randomBytes(20).toString('hex');
     body.order = new SquareConnect.CreateOrderRequest();
