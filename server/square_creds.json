@@ -1,9 +1,14 @@
 {
-    "app-id": "sq0idp-k1yxDNYVkKsUQqnxOvHoDw",
-    "access-token": "sq0atp-lT2paByF50i0CVsxtdlQGg",
-    "location-id": "QXK2NGD0ZM6TT",
-    "sandbox-id": "sandbox-sq0idp-k1yxDNYVkKsUQqnxOvHoDw",
-    "sandbox-token": "sandbox-sq0atb-MPBwGJWMTxIKYyEvzf_9cQ",
-    "sandbox-location": "CBASEG9pn_TfZEnvNptSCXVQhTsgAQ",
-    "validity-string": "IT WORKED :)"
+    "validity-string": "IT WORKED :)",
+    "production": {
+        "id": "sq0idp-k1yxDNYVkKsUQqnxOvHoDw",
+        "token": "sq0atp-lT2paByF50i0CVsxtdlQGg",
+        "location": "QXK2NGD0ZM6TT"
+    },
+    "testing": {
+        "id": "sandbox-sq0idp-k1yxDNYVkKsUQqnxOvHoDw",
+        "token": "sandbox-sq0atb-MPBwGJWMTxIKYyEvzf_9cQ",
+        "location": "CBASEG9pn_TfZEnvNptSCXVQhTsgAQ"
+    },
+    "mode": "testing"
 }

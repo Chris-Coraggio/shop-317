@@ -38,21 +38,22 @@ export class ProductModalComponent implements OnInit {
     var validityString = config["validity-string"];
     var body = {
       quantity: this.quantity,
-      price: product.price,
+      cost: parseFloat(product.price) * 100,
       product_name: product.name
     };
     var headers = {
 
     };
-    this.http.post('https://shop-317.herokuapp.com/buy', JSON.stringify(body), {
-      headers: headers
+    this.http.post('http://localhost:3000/buy', body, {
+      headers: headers,
+      responseType: "text"
     })
     .subscribe(data => {
       console.log("Request sent. Data: " + data.toString());
       console.log(data);
       var dataString = data.toString();
       if(dataString.startsWith(validityString)){
-        dataString = dataString.substring(dataString.indexOf(validityString) + validityString.length + 1);
+        dataString = dataString.substring(dataString.indexOf(validityString) + validityString.length);
         console.log(dataString);
         this.checkoutUrl = dataString;
       }

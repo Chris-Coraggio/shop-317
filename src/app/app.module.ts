@@ -77,8 +77,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
-    { provide: LocationStrategy, useClass: HashLocationStrategy }],
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   entryComponents: [
     ProductModalComponent
   ],
