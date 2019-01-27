@@ -44,7 +44,7 @@ export class ProductModalComponent implements OnInit {
     var headers = {
 
     };
-    this.http.post('http://127.0.0.1:3000/ping', JSON.stringify(body), {
+    this.http.post('https://shop-317.herokuapp.com/buy', JSON.stringify(body), {
       headers: headers
     })
     .subscribe(data => {

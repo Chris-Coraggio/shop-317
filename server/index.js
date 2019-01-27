@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const creds = require("./square_creds.json");
 const crypto = require('crypto');
 var checkout = new SquareConnect.CheckoutApi();
+let cors = require('cors');
 
 function startServer(){
     const defaultClient = SquareConnect.ApiClient.instance;
@@ -15,6 +16,7 @@ function startServer(){
         console.log(`Up and running on port ${port}!`);
     })
 }
+app.use(cors()); // TODO change this to the specific domain before production
 startServer();
 
 app.get('/', (req, res) => {
@@ -27,7 +29,7 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/test', (req, res) => {
+app.post('/buy', (req, res) => {
     var body = new SquareConnect.CreateCheckoutRequest();
     body.idempotency_key = crypto.randomBytes(20).toString('hex');
     body.order = new SquareConnect.CreateOrderRequest();
