@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/buy', (req, res) => {
-    console.log(req);
+    console.log(req.body);
     var body = new SquareConnect.CreateCheckoutRequest();
     body.idempotency_key = crypto.randomBytes(20).toString('hex');
     body.order = new SquareConnect.CreateOrderRequest();
@@ -38,12 +38,12 @@ app.post('/buy', (req, res) => {
     body.order.line_items = [];
     body.order.line_items.push();
     var lineItem = new SquareConnect.CreateOrderRequestLineItem();
-    lineItem.quantity = req.quantity;
+    lineItem.quantity = req.body.quantity;
     lineItem.base_price_money = {
-        amount: req.cost, //in cents
+        amount: req.body.cost, //in cents
         currency: 'USD'
     };
-    lineItem.name = req.product_name;
+    lineItem.name = req.body.product_name;
     body.order.line_items.push(lineItem);
     body.order.taxes = [];
     var tax = new SquareConnect.CreateOrderRequestTax();
