@@ -48,8 +48,10 @@ export class ProductModalComponent implements OnInit {
       headers: headers
     })
     .subscribe(data => {
+      console.log("Request sent. Data: " + data.toString());
+      console.log(data);
       var dataString = data.toString();
-      if(dataString.startsWith("IT WORKED :)")){
+      if(dataString.startsWith(validityString)){
         dataString = dataString.substring(dataString.indexOf(validityString) + validityString.length + 1);
         console.log(dataString);
         this.checkoutUrl = dataString;

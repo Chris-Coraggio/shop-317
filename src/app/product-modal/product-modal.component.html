@@ -89,6 +89,6 @@
   </div>
   <mat-dialog-actions>
     <button mat-button [mat-dialog-close]="true">Quit</button>
-    <button mat-button [mat-dialog-close]="false" (click)="addToCart()">Buy</button>
+    <button mat-button (click)="addToCart()">Buy</button>
     <a [href]="this.checkoutUrl" *ngIf="this.checkoutUrl">Confirm Buy</a>
   </mat-dialog-actions>
