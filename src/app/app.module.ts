@@ -38,6 +38,8 @@ import { VariationsListComponent } from './variations-list/variations-list.compo
 import { BulletListDisplayComponent } from './bullet-list-display/bullet-list-display.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { HttpClientModule } from '@angular/common/http'; 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule, 
     MatToolbarModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    AngularFontAwesomeModule
   ],
   providers: [AngularFirestore, AuthService, AngularFireAuth, UploadService,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],

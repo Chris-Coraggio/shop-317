@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <a mat-button class="companyName" routerLink="/">
     <img class="nav-img" src="../assets/img/logo-small.png">
   </a>
@@ -6,12 +6,24 @@
   <div fxShow="true" fxHide.lt-md="true">
     <a mat-button href="#about" >About</a>
     <a mat-button href="#contact">Contact</a>
-    <a mat-button *ngIf="auth.displayName; else notLoggedIn">
-        Signed in as: {{auth.displayName}}
+    <mat-menu #appMenu="matMenu">
+      <a mat-menu-item>
+        <fa name="cog"></fa>
+        Settings
+      </a>
+      <a mat-menu-item href="/cart">
+        <fa name="shopping-cart"></fa>
+        My Cart
+      </a>
+      <a mat-menu-item *ngIf="auth.displayName" (click)="auth.logout()">
+        Sign Out
+      </a>
+    </mat-menu>
+    <a mat-button *ngIf="auth.displayName; else notLoggedIn" [matMenuTriggerFor]="appMenu">
+        <fa name="user"></fa>
+        {{auth.displayName}}
     </a>
-    <a mat-button *ngIf="auth.displayName" (click)="auth.logout()">
-      Sign Out
-    </a>
+    
       
       <ng-template #notLoggedIn>
           <a mat-button (click)="auth.googleLogin()">

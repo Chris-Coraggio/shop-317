@@ -41,14 +41,16 @@ app.post('/buy', (req, res) => {
     body.order.idempotency_key = crypto.randomBytes(20).toString('hex');
     body.order.line_items = [];
     body.order.line_items.push();
-    var lineItem = new SquareConnect.CreateOrderRequestLineItem();
-    lineItem.quantity = req.body.quantity;
-    lineItem.base_price_money = {
-        amount: req.body.cost, //in cents
-        currency: 'USD'
-    };
-    lineItem.name = req.body.product_name;
-    body.order.line_items.push(lineItem);
+    for(product in req.body.values()){
+        var lineItem = new SquareConnect.CreateOrderRequestLineItem();
+        lineItem.quantity = product.quantity;
+        lineItem.base_price_money = {
+            amount: product.cost, //in cents
+            currency: 'USD'
+        };
+        lineItem.name = product.product_name;
+        body.order.line_items.push(lineItem);
+    }
     body.order.taxes = [];
     var tax = new SquareConnect.CreateOrderRequestTax();
     tax.name = "Sales Tax";

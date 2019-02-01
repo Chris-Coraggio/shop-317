@@ -22,8 +22,13 @@ const routes: Routes = [
   },
   {
     path: "cart",
-    component: CartComponent
-  }
+    component: CartComponent,
+    // canActivate: [CartGuardGuard] this is freaking broken
+  },
+  { path: '',
+    redirectTo: '/shop',
+    pathMatch: 'full'
+  },
 ]
 
 @NgModule({

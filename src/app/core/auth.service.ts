@@ -5,7 +5,7 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { switchMap} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 interface User {
   uid: string;
@@ -20,6 +20,7 @@ export class AuthService {
 
   user: Observable<User>;
   displayName: string;
+  uid: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -78,6 +79,14 @@ export class AuthService {
 
   checkForAdmin(email: String): boolean {
     return email === "chriscoraggio1@gmail.com" || email === "shop317company@gmail.com"
+  }
+
+  getUID(){
+    return this.afAuth.auth.currentUser.uid;
+  }
+
+  getDisplayName(){
+    return this.afAuth.auth.currentUser.displayName;
   }
 
 

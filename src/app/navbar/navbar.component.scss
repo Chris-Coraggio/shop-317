@@ -1,7 +1,13 @@
+@import '../style-globals.scss';
+
 .nav-img {
     height: 200px;
 }
 
 .float-right {
     float: right;
+}
+
+.mat-toolbar {
+    color: $primary-color;
 }
