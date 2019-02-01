@@ -50,23 +50,25 @@ export class ProductModalComponent implements OnInit {
       product_name: product.name
     };
 
-    //if you haven't logged in, a temporary cart will be provided to you
-    var cartPath = this.auth.getUID() === undefined ? this.getTempCartID() : this.auth.getUID();
+    this.auth.user.subscribe(user => {
+      //if you haven't logged in, a temporary cart will be provided to you
+      var cartPath = user.uid === undefined ? this.getTempCartID() : user.uid;
 
-    //check for other instances of the product already in cart
-    this.db.doc(`carts/${cartPath}`).get()
-    .subscribe(docSnapshot => {
-      var data = docSnapshot.data();
-      if(data == null){
-        var obj = new Object();
-        obj[product.name] = body;
-        this.db.doc(`carts/${cartPath}`).set(obj);
-      } else {
-        body.quantity = body.quantity + data.get(product.name);
-        var obj = new Object();
-        obj[product.name] = body;
-        this.db.doc(`carts/${cartPath}`).update(obj)
-      }
-    });
+      //check for other instances of the product already in cart
+      this.db.doc(`carts/${cartPath}`).get()
+      .subscribe(docSnapshot => {
+        var data = docSnapshot.data();
+        if(data == null){
+          var obj = new Object();
+          obj[product.name] = body;
+          this.db.doc(`carts/${cartPath}`).set(obj);
+        } else {
+          body.quantity = String(Number(body.quantity) + Number(data[product.name].quantity));
+          var obj = new Object();
+          obj[product.name] = body;
+          this.db.doc(`carts/${cartPath}`).update(obj)
+        }
+      });
+    })
   }
 }

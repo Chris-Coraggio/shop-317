@@ -17,31 +17,41 @@ export class CartComponent implements OnInit {
   constructor(private http: HttpClient, private db: AngularFirestore, private auth: AuthService) { }
 
   ngOnInit() {
+    this.generateCheckoutURL();
   }
 
   generateCheckoutURL(){
 
     var validityString = config["validity-string"];
+    var uid: String;
 
-    this.db.doc(`carts/${this.auth.getUID()}`).get()
-    .subscribe(docSnap => {
-      this.http.post(config[config.mode].server + 'buy', docSnap.data(), {
-        headers: {
-  
-        },
-        responseType: "text"
-      })
-      .subscribe(data => {
-        console.log("Request sent. Data: " + data.toString());
-        console.log(data);
-        var dataString = data.toString();
-        if(dataString.startsWith(validityString)){
-          dataString = dataString.substring(dataString.indexOf(validityString) + validityString.length);
-          console.log(dataString);
-          this.checkoutURL = dataString;
-        }
-      });
+    this.auth.user.subscribe(user=>{
+      uid = user.uid;
+
+      this.db.doc(`carts/${uid}`).get()
+      .subscribe(docSnap => {
+        console.log(docSnap.data());
+        this.http.post(config[config.mode].server + 'buy', docSnap.data(), {
+          headers: {
+    
+          },
+          responseType: "text"
+        })
+        .subscribe(data => {
+          console.log("Request sent. Data: " + data.toString());
+          console.log(data);
+          var dataString = data.toString();
+          if(dataString.startsWith(validityString)){
+            dataString = dataString.substring(dataString.indexOf(validityString) + validityString.length);
+            console.log(dataString);
+            this.checkoutURL = dataString;
+          }
+        });
     })
+
+    })
+
+    
 
 
 

@@ -1,3 +1,7 @@
 <p>
   cart works!
 </p>
+
+<p *ngIf="this.checkoutURL">
+  <a [(href)]="this.checkoutURL">Go to Square</a>
+</p>

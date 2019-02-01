@@ -19,8 +19,6 @@ interface User {
 export class AuthService {
 
   user: Observable<User>;
-  displayName: string;
-  uid: string;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -31,6 +29,7 @@ export class AuthService {
       //// Get auth data, then get firestore user document || null
       this.user = this.afAuth.authState.pipe(
         switchMap(user => {
+          console.log(user);
           if (user) {
             return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
           } else {
@@ -38,7 +37,6 @@ export class AuthService {
           }
         })
       )
-      this.displayName = "";
     }
 
   googleLogin() {
@@ -49,14 +47,12 @@ export class AuthService {
   private oAuthLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUserData(credential.user)
-        this.displayName = credential.user.displayName;
+        this.updateUserData(credential.user);
       })
   }
 
   logout() {
     this.afAuth.auth.signOut();
-    this.displayName = "";
   }
 
   private updateUserData(user) {
@@ -71,8 +67,6 @@ export class AuthService {
       isAdmin: this.checkForAdmin(user.email)
     }
 
-    this.router.navigate(['/shop']);
-
     return userRef.set(data, { merge: true })
 
   }
@@ -80,15 +74,6 @@ export class AuthService {
   checkForAdmin(email: String): boolean {
     return email === "chriscoraggio1@gmail.com" || email === "shop317company@gmail.com"
   }
-
-  getUID(){
-    return this.afAuth.auth.currentUser.uid;
-  }
-
-  getDisplayName(){
-    return this.afAuth.auth.currentUser.displayName;
-  }
-
 
   signOut() {
     this.afAuth.auth.signOut().then(() => {

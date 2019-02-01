@@ -15,13 +15,13 @@
         <fa name="shopping-cart"></fa>
         My Cart
       </a>
-      <a mat-menu-item *ngIf="auth.displayName" (click)="auth.logout()">
+      <a mat-menu-item *ngIf="auth.user | async" (click)="auth.logout()">
         Sign Out
       </a>
     </mat-menu>
-    <a mat-button *ngIf="auth.displayName; else notLoggedIn" [matMenuTriggerFor]="appMenu">
+    <a mat-button *ngIf="auth.user | async as user; else notLoggedIn" [matMenuTriggerFor]="appMenu">
         <fa name="user"></fa>
-        {{auth.displayName}}
+        {{user.displayName}}
     </a>
     
       
