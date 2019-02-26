@@ -5,8 +5,9 @@
 </div>
 <ul>
     <li *ngFor="let variation of this.variationList | async | keyvalue">
-        {{variation.value.img | filename}}
-        <input type="text" [(ngModel)]="this.description" placeholder="descriptive text">
-        <button type="button" (click)="saveVariation(variation.key)">Save</button>
+        {{variation | json}}
+        <img [src]="variation.value.img | url" width="80">
+        <input type="text" [(ngModel)]="variation.description" [placeholder]="variation.value.description != null ? variation.value.description : 'description'">
+        <button type="button" (click)="saveVariation(variation.value.img, variation.description)">Save</button>
     </li>
 </ul> 

@@ -1,32 +1,16 @@
-<product-form></product-form>
+<h2> Add Product </h2>
+<product-form [uid]="1"></product-form>
 <category-view></category-view>
 
 <h2>My Products</h2>
-<div class="card-box col-md-4 col-sm-6" *ngFor="let product of products | async" (click)="onSelect(product)" [class.selected]="product === selectedProduct">
-      <!-- <ul>
-        <li *ngFor="let bullet of bulletList | async | keyvalue">{{bullet.value}}</li>
-      </ul>
-      <ul>
-        <li *ngFor="let image of imageList | async | keyvalue">
-          <img [src]="getURL(image.value)">
-        </li>
-      </ul>
-    </div> -->
-    <div class="card" [ngStyle]="{'background-image': 'url(' + product.primaryImage + ')'}">
-        <div class="header">
-            <div class="category">
-                <h6 class="label label-danger">{{product.category}}</h6>    
-            </div>
-        </div>
-        
-        <div class="content">
-            <h4 class="title title-uppercase">
-                <a>{{product.name}}</a>
-            </h4>
-            <p class="description">{{product.description}}</p>
-        </div>                            
-        <div class="filter">
-            
-        </div>
-  </div>
+<div class="category-container" *ngFor="let cat of this.categories | async">
+    <h2>{{cat.name}}</h2>
+    <div *ngFor="let prod of cat.productIds">
+        <app-product-card [id]="prod" [onclick]="null" (click)="onSelect(prod)"></app-product-card>
+    </div>
+</div>
+
+<div *ngIf="this.selectedProduct">
+    <h2>Edit Product</h2>
+    <product-form [prod]="this.selectedProduct" [uid]="2"></product-form>
 </div>

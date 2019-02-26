@@ -21,7 +21,6 @@ export class UploadService {
     this.task = ref.put(file);
     image.fileName = file.name;
     this.uploadProgress = this.task.percentageChanges();
-    console.log("Sanity");
     this.task.then( (result) => {
       return result.ref.getDownloadURL();
     })

@@ -25,7 +25,7 @@ import { UploadService } from './core/upload.service';
 import { CartComponent } from './cart/cart.component';
 import { BulletListComponent } from './bullet-list/bullet-list.component';
 import { CategoryViewComponent } from './category-view/category-view.component';
-import { FileNamePipe } from './upload-image/file-name-pipe';
+import { UrlPipe } from './upload-image/url-pipe';
 import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
@@ -52,7 +52,7 @@ import { MatMenuModule } from '@angular/material/menu';
     CartComponent,
     BulletListComponent,
     CategoryViewComponent,
-    FileNamePipe,
+    UrlPipe,
     ProductModalComponent,
     NavbarComponent,
     AboutComponent,

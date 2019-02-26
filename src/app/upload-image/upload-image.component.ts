@@ -32,7 +32,7 @@ export class UploadImageComponent implements OnInit, ControlValueAccessor {
     }  
   }
 
-  @Input('id') currentImageListId: String = "";
+  @Input('list-id') currentImageListId: String = "";
   uploadService: UploadService;
   db: AngularFirestore;
   imageList: Observable<{}>;

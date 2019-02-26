@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UploadService } from '../core/upload.service';
 import { firestore } from 'firebase';
 import { Variation } from '../variation';
+import { Image } from '../image';
 
 @Component({
   selector: 'variationsList',
@@ -37,7 +38,7 @@ export class VariationsListComponent implements OnInit {
   @Input('list-id') currentVariationListId: String = "";
   db: AngularFirestore;
   variationList: Observable<{}>;
-  description: String = "";
+  variation: Variation;
 
   upload(event: any){
     console.log(event)
@@ -47,22 +48,27 @@ export class VariationsListComponent implements OnInit {
       this.db.doc(`variations/${this.currentVariationListId}`).set({});
       this.variationList = this.db.doc(`variations/${this.currentVariationListId}`).valueChanges();
     }
+    console.log(this.currentVariationListId);
     this.uploadService.upload(event, this.currentVariationListId);
     this.uploadProgress = this.uploadService.getUploadProgress();
   }
 
-  saveVariation(variationListId: string){
+  saveVariation(img: Image, description: string){
     var setObj = new Object();
     this.db.doc(`variations/${this.currentVariationListId}`).ref.get()
     .then(data=>{
       console.log(data.data());
-      var img = Object.values(data.data())[0];
-      setObj[variationListId] = {
-        description: this.description,
-        ...img
+      setObj["VAR" + img.id] = {
+        description: description,
+        img: {
+          id: img.id,
+          listId: img.listId,
+          url: img.url,
+          fileName: img.fileName
+        }
       };
       console.log(setObj);
-      this.db.doc(`variations/${this.currentVariationListId}`).set(setObj);
+      this.db.doc(`variations/${this.currentVariationListId}`).update(setObj);
     })
     
   }

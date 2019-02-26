@@ -7,6 +7,7 @@ const crypto = require('crypto');
 var checkout = new SquareConnect.CheckoutApi();
 let cors = require('cors');
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
 
 function startServer(){
     const defaultClient = SquareConnect.ApiClient.instance;
@@ -69,4 +70,30 @@ app.post('/buy', (req, res) => {
         console.log(err);
         res.send(body);
     })
+})
+
+app.post('/contact', (req, res) => {
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: creds['email'],
+          pass: creds['email-password']
+        }
+      });
+    var mailOptions = {
+        from: creds['email'],
+        to: creds['email'],
+        subject: 'Feedback from ' + req.body.name,
+        text: req.body.message + "\nTo reply, send an email to " + req.body.email
+      };
+    console.log(mailOptions)
+    transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log(error);
+        res.send(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+        res.send(info.response);
+    }
+    });
 })

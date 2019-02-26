@@ -18,6 +18,7 @@ export class ProductCardComponent implements OnInit {
   dialog: MatDialog;
   @Input('id') productId: String;
   product: any;
+  @Input('onclick') onclick: Function = this.showDialog;
 
   constructor(db: AngularFirestore, dialog: MatDialog) {
     this.db = db;
@@ -30,6 +31,7 @@ export class ProductCardComponent implements OnInit {
     .subscribe(data => {
       this.product = data.data();
     })
+    console.log(this.onclick);
   }
 
   showDialog(){

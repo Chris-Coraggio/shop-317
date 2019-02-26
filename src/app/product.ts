@@ -8,4 +8,5 @@ export class Product {
     name: String;
     id: String;
     primaryImage: String;
+    variations: String;
 }

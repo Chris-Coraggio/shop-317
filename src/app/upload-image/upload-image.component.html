@@ -6,6 +6,6 @@
 <h4>Images</h4>
 <ul>
     <li *ngFor="let image of this.imageList | async | keyvalue">
-        {{image.value | filename}}
+        <img [src]="image.value | url" width="100">
     </li>
 </ul> 

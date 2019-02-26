@@ -26,6 +26,7 @@ export class BulletListComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     if(this.currentBulletListId != ""){
       this.bulletList = this.db.doc(`bullets/${this.currentBulletListId}`).valueChanges();
+      this.propagateChange(this.currentBulletListId);
     }
   }
 
